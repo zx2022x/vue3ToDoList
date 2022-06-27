@@ -17,8 +17,15 @@ const mainStore =defineStore("main",{
             // console.log(data)
             this.list=data
         
-
+ 
         },
+        //删除数据
+        async delTodo(id:number){
+
+            await  request.delete(`/${id}`)
+            this.getTodos()
+            
+        }
 
 
 
