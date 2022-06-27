@@ -24,8 +24,19 @@ const mainStore =defineStore("main",{
 
             await  request.delete(`/${id}`)
             this.getTodos()
+
+        },
+        //更新函数 根据id来更新
+        async updateTodo(id:number,key:string,value:boolean | string){
+
+            await request.patch(`/${id}`,{
+                [key]:value,
+            })
             
+            this.getTodos()
+             
         }
+
 
 
 
