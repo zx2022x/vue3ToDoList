@@ -1,0 +1,42 @@
+<template>
+  
+    <section class="main">
+      <input id="toggle-all" class="toggle-all" type="checkbox" />
+      <label for="toggle-all">Mark all as complete</label>
+      <ul class="todo-list">
+        <!-- These are here just to show the structure of the list items -->
+        <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+        <li  v-for="item in list" :key="item.id" :class="{completed:item.done,}">
+          <div class="view">
+          <input class="toggle" type="checkbox" :checked="item.done" />
+          <label>{{item.name}}</label>
+          <button class="destroy"></button>
+        </div>
+        <input class="edit" value="Create a TodoMVC template" />
+         
+         
+         
+        </li>
+      </ul>
+    </section>
+</template>
+
+<script setup lang="ts">
+import {storeToRefs} from "pinia"
+import userStore from "../store"
+const {main}=userStore()
+const {getTodos}=main
+//派发action
+
+getTodos()
+//把Refs的数据转换成双向数据绑定
+const {list}=storeToRefs(main)
+
+// console.log(main)
+
+
+</script>
+
+<style>
+
+</style>
